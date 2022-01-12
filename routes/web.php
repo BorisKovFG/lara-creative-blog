@@ -21,6 +21,16 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
     Route::group(['namespace' => 'Main'], function () {
         Route::get('/', 'IndexController')->name('admin.index');
     });
+    Route::group(['namespace' => 'Post', 'prefix' => 'posts'], function () {
+        Route::get('/', 'IndexController')->name('admin.post.index');
+        Route::get('/create', 'CreateController')->name('admin.post.create');
+        Route::post('/', 'StoreController')->name('admin.post.store');
+        Route::get('/{post}', 'ShowController')->name('admin.post.show');
+        Route::get('/{post}/edit', 'EditController')->name('admin.post.edit');
+        Route::patch('/{post}', 'UpdateController')->name('admin.post.update');
+        Route::delete('/{post}', 'DestroyController')->name('admin.post.destroy');
+    });
+
     Route::group(['namespace' => 'Category', 'prefix' => 'categories'], function () {
         Route::get('/', 'IndexController')->name('admin.category.index');
         Route::get('/create', 'CreateController')->name('admin.category.create');
@@ -30,6 +40,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
         Route::patch('/{category}', 'UpdateController')->name('admin.category.update');
         Route::delete('/{category}', 'DestroyController')->name('admin.category.destroy');
     });
+
     Route::group(['namespace' => 'Tag', 'prefix' => 'tags'], function () {
         Route::get('/', 'IndexController')->name('admin.tag.index');
         Route::get('/create', 'CreateController')->name('admin.tag.create');
