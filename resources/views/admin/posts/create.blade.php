@@ -31,7 +31,7 @@
                             @csrf
                             <div class="form-group">
                                 <label>Name:</label>
-                                <input type="text" name="title" class="form-control col-5" placeholder="Name of Post"
+                                <input type="text" name="title" class="form-control col-6" placeholder="Name of Post"
                                        value="{{ old('title') }}">
                                 @error('title')
                                 <div class="text-danger">{{ $message }}</div>
@@ -50,7 +50,7 @@
                                 <select class="form-control col-6" name="category_id">
                                     @foreach($categories as $category)
                                         <option value="{{ $category->id }}"
-                                        {{ ($category->id == old(category_id)) ? 'selected' : '' }}>
+                                            {{ ($category->id == old('category_id')) ? 'selected' : '' }}>
                                             {{ $category->title }}
                                         </option>
                                     @endforeach
@@ -59,7 +59,20 @@
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
-
+                            <div class="form-group">
+                                <label>Tags:</label>
+                                <select class="select2 select2-hidden-accessible" name="tag_ids[]" multiple=""
+                                        data-placeholder="Select tags" style="width: 100%;"
+                                        data-select2-id="7" tabindex="-1" aria-hidden="true">
+                                    @foreach($tags as $tag)
+                                        <option
+                                            {{ (is_array(old('tag_ids')) && in_array($tag->id, old('tag_ids'))) ? 'selected' : ''}}
+                                            value="{{ $tag->id }}">
+                                            {{ $tag->title }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
                             <div class="form-group">
                                 <label>Add preview:</label>
                                 <div class="input-group">
