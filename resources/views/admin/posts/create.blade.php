@@ -26,11 +26,11 @@
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
                     <div class="col-12">
-                        <form action="{{ route('admin.post.store') }}" method="post" class="col-10"
-                              enctype="multipart/form-data">
-                            @csrf
-                            <div class="form-group">
-                                <label>Name:</label>
+                        <form action="{{ route('admin.post.store') }}" method="post"
+                              enctype="multipart/form-data" class="col-10">
+                        @csrf
+                        <div class="form-group">
+                        <label>Name:</label>
                                 <input type="text" name="title" class="form-control col-6" placeholder="Name of Post"
                                        value="{{ old('title') }}">
                                 @error('title')

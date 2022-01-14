@@ -11,6 +11,8 @@ class UpdateRequest extends FormRequest
      *
      * @return bool
      */
+    private $minLengthOfContent = 50;
+
     public function authorize()
     {
         return true;
@@ -25,12 +27,27 @@ class UpdateRequest extends FormRequest
     {
         return [
             'title' => 'required|string',
-            'content' => 'required|string',
+            'content' => 'required|string|min:' . $this->minLengthOfContent,
             'preview_image' => 'nullable|file',
             'main_image' => 'nullable|file',
             'category_id' => 'required|exists:categories,id',
             'tag_ids' => 'nullable|array',
             'tag_ids.*' => 'nullable|integer|exists:tags,id'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'title.required' => 'Заполните поле title',
+            'title.string' => 'В поле title можно ввести только строку',
+            'content.required' => 'Заполните поле content',
+            'content.min' => 'Поле content минимум ' . $this->minLengthOfContent .' символов',
+            'preview_image.required' => 'Добавьте preview',
+            'preview_image.file' => 'В поле должен быть file',
+            'main_image.file' => 'В поле должен быть file',
+            'main_image.required' => 'Добавьте главный рисунок',
+            'category_id.required' => 'Выберите категорию'
         ];
     }
 }
