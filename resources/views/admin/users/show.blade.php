@@ -7,9 +7,9 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6 d-flex align-items-center">
-                        <h1 class="m-0 mr-2">{{ $category->title }}</h1>
-                        <a href="{{ route('admin.category.edit', $category) }}"><i class="fas fa-edit"></i></a>
-                        <form action="{{ route('admin.category.destroy', $category) }}" method="post">
+                        <h1 class="m-0 mr-2">{{ $user->name }}</h1>
+                        <a href="{{ route('admin.user.edit', $user) }}"><i class="fas fa-edit"></i></a>
+                        <form action="{{ route('admin.user.destroy', $user) }}" method="post">
                             @csrf
                             @method('delete')
                             <button type="submit" class="border-0 bg-transparent">
@@ -34,15 +34,15 @@
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
                     <div class="col-2 mb-2">
-                        <a href="{{ route('admin.category.create') }}" class="btn btn-block btn-primary">Add
-                            Category</a>
+                        <a href="{{ route('admin.user.create') }}" class="btn btn-block btn-primary">Add
+                            User</a>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-6">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Categories</h3>
+                                <h3 class="card-title">User</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body table-responsive p-0">
@@ -51,14 +51,14 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Name</th>
-                                        <th>Amount of Posts</th>
+                                        <th>E-mail</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>{{ $category->id }}</td>
-                                            <td>{{ $category->title }}</td>
-                                            <td>0</td>
+                                            <td>{{ $user->id }}</td>
+                                            <td>{{ $user->name }}</td>
+                                            <td>{{ $user->email }}</td>
                                         </tr>
                                     </tbody>
                                 </table>

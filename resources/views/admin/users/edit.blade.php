@@ -7,7 +7,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Edit Category:</h1>
+                        <h1 class="m-0">Edit User:</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -26,14 +26,22 @@
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
                     <div class="col-12">
-                        <form action="{{ route('admin.category.update', $category) }}" method="post" class="col-5">
+                        <form action="{{ route('admin.user.update', $user) }}" method="post" class="col-5">
                             @csrf
                             @method('patch')
                             <div class="form-group">
                                 <label>Name:</label>
-                                <input type="text" name="title" class="form-control" placeholder="Name of Category"
-                                       value="{{$category->title ?? old('title') }}">
-                                @error('title')
+                                <input type="text" name="name" class="form-control" placeholder="Name of User"
+                                       value="{{ old('name', $user->name) }}">
+                                @error('name')
+                                <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label>E-mail:</label>
+                                <input type="text" name="email" class="form-control" placeholder="E-mail"
+                                       value="{{ old('email', $user->email) }}">
+                                @error('email')
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>

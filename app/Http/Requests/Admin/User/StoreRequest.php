@@ -11,8 +11,6 @@ class StoreRequest extends FormRequest
      *
      * @return bool
      */
-    private $minLengthOfContent = 50;
-
     public function authorize()
     {
         return true;
@@ -26,28 +24,19 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|string',
-            'content' => 'required|string|min:' . $this->minLengthOfContent,
-            'preview_image' => 'required|file',
-            'main_image' => 'required|file',
-            'category_id' => 'required|exists:categories,id',
-            'tag_ids' => 'nullable|array',
-            'tag_ids.*' => 'nullable|integer|exists:tags,id'
+            'name' => 'required|string',
+            'email' => 'required|string|email|unique:users,email',
+            'password' => 'required|string'
         ];
     }
 
     public function messages()
     {
         return [
-            'title.required' => 'Заполните поле title',
-            'title.string' => 'В поле title можно ввести только строку',
-            'content.required' => 'Заполните поле content',
-            'content.min' => 'Поле content минимум ' . $this->minLengthOfContent .' символов',
-            'preview_image.required' => 'Добавьте preview',
-            'preview_image.file' => 'В поле должен быть file',
-            'main_image.file' => 'В поле должен быть file',
-            'main_image.required' => 'Добавьте главный рисунок',
-            'category_id.required' => 'Выберите категорию'
+            'name.required' => 'Your name, please',
+            'email.required' => 'Where is your e-mail?',
+            'email.email' => 'Where ie right format of email?',
+            'password.required' => 'Give me password!'
         ];
     }
 }

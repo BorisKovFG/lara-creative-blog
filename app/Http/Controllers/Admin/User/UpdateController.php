@@ -5,13 +5,14 @@ namespace App\Http\Controllers\Admin\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\User\UpdateRequest;
 use App\Models\Category;
+use App\Models\User;
 
 class UpdateController extends BaseController
 {
-    public function __invoke(UpdateRequest $request, Category $category)
+    public function __invoke(UpdateRequest $request, User $user)
     {
-//        $data = $request->validated();
-//        $category->update($data);
-        return redirect()->route('admin.user.show', compact(''));
+        $data = $request->validated();
+        $this->service->update($data, $user);
+        return redirect()->route('admin.user.show', compact('user'));
     }
 }

@@ -36,6 +36,22 @@
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
+                            <div class="form-group">
+                                <label>E-mail:</label>
+                                <input type="text" name="email" class="form-control" placeholder="E-mail"
+                                       value="{{ old('email') }}">
+                                @error('email')
+                                <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label>Password:</label>
+                                <input type="text" name="password" class="form-control" placeholder="Password"
+                                       value="{{ old('password') }}">
+                                @error('password')
+                                <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
                             <div>
                                 <input type="submit" class="btn btn-primary" value="Add">
                             </div>
