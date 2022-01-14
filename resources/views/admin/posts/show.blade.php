@@ -33,12 +33,6 @@
             <div class="container-fluid">
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
-                    <div class="col-2 mb-2">
-                        <a href="{{ route('admin.post.create') }}" class="btn btn-block btn-primary">Add
-                            Tag</a>
-                    </div>
-                </div>
-                <div class="row">
                     <div class="col-6">
                         <div class="card">
                             <div class="card-header">
@@ -49,17 +43,23 @@
                                 <table class="table table-hover text-nowrap">
                                     <thead>
                                     <tr>
-                                        <th>ID</th>
-                                        <th>Name</th>
-                                        <th>Content</th>
+                                        <td class="font-weight-bold">ID</td>
+                                        <td>{{ $post->id }}</td>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>{{ $post->id }}</td>
-                                            <td>{{ $post->title }}</td>
-                                            <td>{{ $post->content }}</td>
-                                        </tr>
+                                    <tr>
+                                        <td class="font-weight-bold">Name</td>
+                                        <td>{{ $post->title }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-bold">Content</td>
+                                        <td>{{ $post->content }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-bold">Main image</td>
+                                        <td><img src="{{ asset('storage/' . $post->main_image) }}" alt="main_image"></td>
+                                    </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -69,6 +69,7 @@
                     </div>
                     <!-- /.row -->
                 </div>
+
             </div><!-- /.container-fluid -->
         </section>
         <!-- /.content -->
