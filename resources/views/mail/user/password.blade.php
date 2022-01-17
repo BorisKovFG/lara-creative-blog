@@ -9,5 +9,5 @@
 
     {{--Thanks,<br>--}}
     {{--{{ config('app.name') }}--}}
-    Your Password: {{ $password }}
+    Your Password: {{ $pass }}
 @endcomponent

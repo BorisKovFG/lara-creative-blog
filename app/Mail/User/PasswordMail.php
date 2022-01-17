@@ -11,7 +11,7 @@ class PasswordMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $password;
+    private $password;
 
     /**
      * Create a new message instance.
@@ -31,6 +31,6 @@ class PasswordMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('mail.user.password');
+        return $this->markdown('mail.user.password', ['pass' => $this->password]);
     }
 }
