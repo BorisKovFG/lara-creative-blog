@@ -52,6 +52,7 @@
                                         <th>ID</th>
                                         <th>Name</th>
                                         <th>E-mail</th>
+                                        <th>Role:</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -59,6 +60,7 @@
                                             <td>{{ $user->id }}</td>
                                             <td>{{ $user->name }}</td>
                                             <td>{{ $user->email }}</td>
+                                            <td> {{ $role }}
                                         </tr>
                                     </tbody>
                                 </table>

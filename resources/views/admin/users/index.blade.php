@@ -43,7 +43,7 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Name</th>
-                                        <th>Amount of Posts</th>
+                                        <th>Role</th>
                                         <th colspan="3">Actions</th>
                                     </tr>
                                     </thead>
@@ -52,7 +52,7 @@
                                         <tr>
                                             <td>{{ $user->id }}</td>
                                             <td>{{ $user->name }}</td>
-                                            <td>0</td>
+                                            <td> {{ $roles[$user->role] }}</td>
                                             <td><a href="{{ route('admin.user.show', $user) }}"><i class="fas fa-eye"></i></a></td>
                                             <td><a href="{{ route('admin.user.edit', $user) }}"><i class="fas fa-edit"></i></a></td>
                                             <td>

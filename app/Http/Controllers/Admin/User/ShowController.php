@@ -12,6 +12,7 @@ class ShowController extends BaseController
     public function __invoke(User $user)
     {
 //        $category = Category::findOrFail($category);
-        return view('admin.users.show', compact('user'));
+        $role = User::getRoles()[$user->role];
+        return view('admin.users.show', compact('user', 'role'));
     }
 }
