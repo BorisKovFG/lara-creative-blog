@@ -27,7 +27,10 @@ class UpdateRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'email' => 'required|string|email|unique:users,email',
+            'email' => 'required|string|email|unique:users,email,' . $this->user_id,
+            'user_id' => 'required|integer|exists:users,id',
+            'role' => 'required|integer'
+
         ];
     }
 
@@ -37,6 +40,8 @@ class UpdateRequest extends FormRequest
             'name.required' => 'Your name, please',
             'email.required' => 'Where is your e-mail?',
             'email.email' => 'Where ie right format of email?',
+            'role.required' => 'Choose role of User'
+
         ];
     }
 }
