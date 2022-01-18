@@ -24,9 +24,11 @@ Route::group(['namespace' => 'Personal', 'prefix' => 'personal', 'middleware' =>
     });
     Route::group(['namespace' => 'Liked', 'prefix' => 'likeds'], function () {
         Route::get('/', 'IndexController')->name('personal.liked.index');
+        Route::delete('/{post}', 'DestroyController')->name('personal.liked.destroy');
     });
     Route::group(['namespace' => 'Comment', 'prefix' => 'comments'], function () {
         Route::get('/', 'IndexController')->name('personal.comment.index');
+
     });
 });
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth', 'admin', 'verified']], function () {
