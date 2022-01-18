@@ -11,8 +11,9 @@
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">{{ auth()->user()->name }}</li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.main.index') }}">Main</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.user.index') }}">Users</a></li>
+                            <li class="breadcrumb-item">Create</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
