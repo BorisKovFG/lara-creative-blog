@@ -28,15 +28,15 @@
                 <div class="col-md-8">
                     <section>
                         <div class="row blog-post-row">
-                            @foreach($randPosts as $post)
+                            @foreach($randPosts as $randPost)
                                 <div class="col-md-6 blog-post" data-aos="fade-up">
                                     <div class="blog-post-thumbnail-wrapper">
-                                        <img src="{{ asset('storage/' . $post->preview_image) }}"
-                                             alt="{{ $post->title }}">
+                                        <img src="{{ asset('storage/' . $randPost->preview_image) }}"
+                                             alt="{{ $randPost->title }}">
                                     </div>
-                                    <p class="blog-post-category">{{ $post->category->title }}</p>
-                                    <a href="{{ route('post.show', $post) }}" class="blog-post-permalink">
-                                        <h6 class="blog-post-title">{{ $post->title }}</h6>
+                                    <p class="blog-post-category">{{ $randPost->category->title }}</p>
+                                    <a href="{{ route('post.show', $randPost) }}" class="blog-post-permalink">
+                                        <h6 class="blog-post-title">{{ $randPost->title }}</h6>
                                     </a>
                                 </div>
                             @endforeach

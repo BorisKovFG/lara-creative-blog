@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Personal\Comment;
+namespace App\Http\Requests\Post\Comment;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreRequest extends FormRequest
+class UpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,7 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'message' => 'required|string',
-            'post_id' => 'required',
-            'user_id' => 'required',
+            'message' => 'required|string'
         ];
     }
 }

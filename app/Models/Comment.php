@@ -10,6 +10,8 @@ class Comment extends Model
     use HasFactory;
     protected $table = 'comments';
     protected $fillable = [
-        'message'
+        'message',
+        'user_id',
+        'post_id'
     ];
 }
