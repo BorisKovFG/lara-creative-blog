@@ -9,6 +9,18 @@
     <link rel="stylesheet" href="{{ asset("assets/vendors/font-awesome/css/all.min.css") }}">
     <link rel="stylesheet" href="{{ asset("assets/vendors/aos/aos.css") }}">
     <link rel="stylesheet" href="{{ asset("assets/css/style.css") }}">
+    <style>
+        .comment-text {
+            color: #78838e;
+            margin-left: 40px;
+        }
+
+        .card-footer {
+            padding: .75rem 1.25rem;
+            background-color: rgba(0, 0, 0, .03);
+            border-top: 0 solid rgba(0, 0, 0, .125);
+        }
+    </style>
     <script src="{{ asset("assets/vendors/jquery/jquery.min.js") }}"></script>
     <script src="{{ asset("assets/js/loader.js") }}"></script>
 </head>
@@ -18,13 +30,15 @@
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light">
             <a class="navbar-brand" href="index.html"><img src="{{ asset("assets/images/logo.svg") }}" alt="Edica"></a>
-            <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#edicaMainNav" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#edicaMainNav"
+                    aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="edicaMainNav">
                 <ul class="navbar-nav mx-auto mt-2 mt-lg-0">
                     <li class="nav-item active">
-                        <a class="nav-link" href="{{ route('main.index') }}">Blog Main<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{{ route('main.index') }}">Blog Main<span
+                                class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="contact.html">Contact</a>
@@ -32,7 +46,12 @@
                 </ul>
                 <ul class="navbar-nav mt-2 mt-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Login</a>
+                        @auth()
+                            <a class="nav-link" href="{{ route('personal.main.index') }}">{{ auth()->user()->name  }}</a>
+                        @endauth
+                        @guest()
+                            <a class="nav-link" href="{{ route('personal.main.index') }}">Login</a>
+                        @endguest
                     </li>
                 </ul>
             </div>
@@ -47,10 +66,15 @@
         <div class="footer-banner" data-aos="fade-up">
             <h1 class="banner-title">Download it now.</h1>
             <div class="banner-btns-wrapper">
-                <button class="btn btn-success"> <img src="{{ asset("assets/images/apple@1x.svg") }}" alt="ios" class="mr-2"> App Store</button>
-                <button class="btn btn-success"> <img src="{{ asset("assets/images/android@1x.svg") }}" alt="android" class="mr-2"> Google Play</button>
+                <button class="btn btn-success"><img src="{{ asset("assets/images/apple@1x.svg") }}" alt="ios"
+                                                     class="mr-2"> App Store
+                </button>
+                <button class="btn btn-success"><img src="{{ asset("assets/images/android@1x.svg") }}" alt="android"
+                                                     class="mr-2"> Google Play
+                </button>
             </div>
-            <p class="banner-text">Add some helper text here to explain the finer details of your <br> product or service.</p>
+            <p class="banner-text">Add some helper text here to explain the finer details of your <br> product or
+                service.</p>
         </div>
     </div>
 </section>
@@ -92,8 +116,10 @@
             </div>
             <div class="col-md-3">
                 <div class="dropdown footer-country-dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="footerCountryDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="flag-icon flag-icon-gb flag-icon-squared"></span> United Kingdom <i class="fas fa-chevron-down ml-2"></i>
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="footerCountryDropdown"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="flag-icon flag-icon-gb flag-icon-squared"></span> United Kingdom <i
+                            class="fas fa-chevron-down ml-2"></i>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="footerCountryDropdown">
                         <button class="dropdown-item" href="#">
@@ -112,7 +138,9 @@
                 <a href="#!">Terms</a>
                 <a href="#!">Site Map</a>
             </nav>
-            <p class="mb-0">© Edica. 2020 <a href="https://www.bootstrapdash.com" target="_blank" rel="noopener noreferrer" class="text-reset">bootstrapdash</a> . All rights reserved.</p>
+            <p class="mb-0">© Edica. 2020 <a href="https://www.bootstrapdash.com" target="_blank"
+                                             rel="noopener noreferrer" class="text-reset">bootstrapdash</a> . All rights
+                reserved.</p>
         </div>
     </div>
 </footer>

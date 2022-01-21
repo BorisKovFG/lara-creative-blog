@@ -11,7 +11,32 @@
                             <div class="blog-post-thumbnail-wrapper">
                                 <img src="{{ asset('storage/' . $post->preview_image) }}" alt="{{ $post->title }}">
                             </div>
-                            <p class="blog-post-category">{{ $post->category->title }}</p>
+                            <div class="d-flex justify-content-between">
+                                <p class="blog-post-category">{{ $post->category->title }}</p>
+                                @auth()
+                                    <form action="{{ route('post.like.store', $post) }}" method="post">
+                                        @csrf
+                                        <button type="submit" class="border-0 bg-transparent">
+                                            <span>{{ $post->liked_users_count}}</span>
+                                            @if(auth()->user()->likedPosts->contains($post->id))
+                                                <i class="fas fa-heart"></i>
+                                            @else
+                                                <i class="far fa-heart"></i>
+                                            @endif
+                                        </button>
+                                    </form>
+                                @endauth
+                                @guest()
+                                    <div>
+                                        <span>{{ $post->liked_users_count}}</span>
+                                        @if($post->liked_users_count > 0)
+                                            <i class="fas fa-heart"></i>
+                                        @else
+                                            <i class="far fa-heart"></i>
+                                        @endif
+                                    </div>
+                                @endguest
+                            </div>
                             <a href="{{ route('post.show', $post) }}" class="blog-post-permalink">
                                 <h6 class="blog-post-title">{{ $post->title }}</h6>
                             </a>
@@ -34,7 +59,32 @@
                                         <img src="{{ asset('storage/' . $randPost->preview_image) }}"
                                              alt="{{ $randPost->title }}">
                                     </div>
-                                    <p class="blog-post-category">{{ $randPost->category->title }}</p>
+                                    <div class="d-flex justify-content-between">
+                                        <p class="blog-post-category">{{ $randPost->category->title }}</p>
+                                        @auth()
+                                            <form action="{{ route('post.like.store', $post) }}" method="post">
+                                                @csrf
+                                                <button type="submit" class="border-0 bg-transparent">
+                                                    <span>{{ $randPost->liked_users_count}}</span>
+                                                    @if(auth()->user()->likedPosts->contains($randPost->id))
+                                                        <i class="fas fa-heart"></i>
+                                                    @else
+                                                        <i class="far fa-heart"></i>
+                                                    @endif
+                                                </button>
+                                            </form>
+                                        @endauth
+                                        @guest()
+                                            <div>
+                                                <span>{{ $randPost->liked_users_count}}</span>
+                                                @if($randPost->liked_users_count > 0)
+                                                    <i class="fas fa-heart"></i>
+                                                @else
+                                                    <i class="far fa-heart"></i>
+                                                @endif
+                                            </div>
+                                        @endguest
+                                    </div>
                                     <a href="{{ route('post.show', $randPost) }}" class="blog-post-permalink">
                                         <h6 class="blog-post-title">{{ $randPost->title }}</h6>
                                     </a>
@@ -93,11 +143,11 @@
                             @endforeach
                         </ul>
                     </div>
-{{--                    <div class="widget">--}}
-{{--                        <h5 class="widget-title">Categories</h5>--}}
-{{--                        <img src="{{ asset("assets/images/blog_widget_categories.jpg") }}" alt="categories"--}}
-{{--                             class="w-100">--}}
-{{--                    </div>--}}
+                    {{--                    <div class="widget">--}}
+                    {{--                        <h5 class="widget-title">Categories</h5>--}}
+                    {{--                        <img src="{{ asset("assets/images/blog_widget_categories.jpg") }}" alt="categories"--}}
+                    {{--                             class="w-100">--}}
+                    {{--                    </div>--}}
                 </div>
             </div>
         </div>

@@ -13,6 +13,20 @@
                 <div class="row">
                     <div class="col-lg-9 mx-auto" data-aos="fade-up">
                         {!! $post->content !!}
+                        <section class="py-2">
+                            <form action="{{ route('post.like.store', $post) }}" method="post">
+                                @csrf
+                                <button type="submit" class="border-0 bg-transparent">
+                                    @auth()
+                                        @if(auth()->user()->likedPosts->contains($post->id))
+                                            <i class="fas fa-heart"></i>
+                                        @else
+                                            <i class="far fa-heart"></i>
+                                        @endif
+                                    @endauth
+                                </button>
+                            </form>
+                        </section>
                     </div>
                 </div>
                 {{--                <div class="row mb-5">--}}
@@ -28,28 +42,46 @@
                 {{--                </div>--}}
             </section>
             <div class="row">
-
                 <div class="col-lg-9 mx-auto">
+                    @if($relatedPosts->count() > 0)
                     <section class="related-posts">
                         <h2 class="section-title mb-4" data-aos="fade-up">Related Posts</h2>
                         <div class="row">
-                            @foreach($relatedPosts as $relatedPostost)
+                            @foreach($relatedPosts as $relatedPost)
                                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                                    <img src="{{ asset('storage/' . $relatedPostost->preview_image) }}"
+                                    <img src="{{ asset('storage/' . $relatedPost->preview_image) }}"
                                          alt="related post"
                                          class="post-thumbnail">
-                                    <p class="post-category">{{ $relatedPostost->category->title }}</p>
-                                    <a href="{{ route('post.show', $relatedPostost) }}" class="blog-post-permalink"
+                                    <p class="post-category">{{ $relatedPost->category->title }}</p>
+                                    <a href="{{ route('post.show', $relatedPost) }}" class="blog-post-permalink"
                                        style="text-decoration: none;">
-                                        <h5 class="post-title">{{ $relatedPostost->title }}</h5>
+                                        <h5 class="post-title">{{ $relatedPost->title }}</h5>
                                     </a>
                                 </div>
                             @endforeach
                         </div>
                     </section>
+                    @endif
+                    <section class="comment-list mb-5 card-footer">
+                        <h2 class="comment-list mb-5" data-aos="fade-up">Comments({{ $comments->count() }})</h2>
+                        @foreach($comments as $comment)
+                            <div class="comment-text mb-3">
+                                <span class="username">
+                                    <div class="font-weight-bold">
+                                      {{ $comment->user->name }}
+                                    </div>
+                                    <span class="text-muted float-right">
+                                        {{ $comment->DateAsCarbon->diffForHumans()}}
+                                    </span>
+                                </span>
+                                {{ $comment->message }}
+                            </div>
+                        @endforeach
+                    </section>
+                    @auth()
                     <section class="comment-section">
                         <h2 class="section-title mb-5" data-aos="fade-up">Comment, please</h2>
-{{--                        <form action=" {{ route('personal.comment.store') }}" method="post">--}}
+                        {{--                        <form action=" {{ route('personal.comment.store') }}" method="post">--}}
                         <form action=" {{ route('post.comment.store', $post) }}" method="post">
                             @csrf
                             <div class="row">
@@ -59,9 +91,9 @@
                                               placeholder="Write comment"
                                               rows="10"></textarea>
                                 </div>
-{{--                                <input type="hidden" name="post_id" value="{{ $post->id }}">--}}
-{{--                                <input type="hidden" name="user_id"--}}
-{{--                                       value="{{ (auth()->user()) ? auth()->user()->id : ''}}">--}}
+                                {{--                                <input type="hidden" name="post_id" value="{{ $post->id }}">--}}
+                                {{--                                <input type="hidden" name="user_id"--}}
+                                {{--                                       value="{{ (auth()->user()) ? auth()->user()->id : ''}}">--}}
 
                             </div>
                             <div class="row">
@@ -71,6 +103,7 @@
                             </div>
                         </form>
                     </section>
+                    @endauth
                 </div>
             </div>
         </div>
